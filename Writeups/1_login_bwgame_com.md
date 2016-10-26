@@ -31,4 +31,4 @@ Sending a response of `bnwuserid:1 1 1 hello` will get us past the initial login
 
 ## Next
 
-[2. Getting Map List](Writeups/2_get_maplist.md)
+[2. Getting Map List](/Writeups/2_get_maplist.md)
