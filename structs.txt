@@ -1,0 +1,47 @@
+struct __declspec(align(4)) ircStruct
+{
+  _DWORD shouldQuit;
+  _DWORD waitingForResponse;
+  _DWORD CallbackSub_1;
+  _DWORD CallbackSub_2; (DoShitAndSendIRCNickUser calls this) (used to get encodedIP_GSProfileID) (ircServer, inetaddr)
+  _DWORD CallbackSub_3;
+  _DWORD dword14; (4th arg to CallBackSub_2) (lhnetuser??)
+  _DWORD socket; // 24
+  _DWORD socketStatus;
+  char hostName[255]; // 32
+  char gap11B; // 287
+  _DWORD recvBuffer; // 288
+  _DWORD curRecvBufferPtr; // 292
+  _DWORD recvdword124; // 296
+  _DWORD SendBuffer; // 300
+  _DWORD CountToSend; // 304
+  _DWORD dword130; // 308
+  _DWORD dword134; // 312
+  _DWORD dword138; // 316
+  _DWORD dword13C; // 320
+  _DWORD dword140; // 324
+  _DWORD dword144; // 328
+  _DWORD dword148; // 332
+  _DWORD dword14C; // 336
+  _DWORD dword150; // 340
+  _DWORD dword154; // 344
+  _DWORD dword158; // 348
+  char ircNick[128]; // 352
+  char LHUserName[128]; // 480
+  char encodedIP_GSProfileID[128]; // 608
+  _DWORD dword2E0; // 736
+  char hostName2[128]; // 740
+  _DWORD hostPort; // 868
+  _DWORD dword368;
+  _DWORD dword36C;
+  _DWORD dword370;
+  _DWORD dword374;
+  _DWORD dword378;
+  _DWORD dword37C;
+  _DWORD dword380;
+  _DWORD dword384; /* */
+  _DWORD dword388;
+  _DWORD dword38C;
+  _DWORD dword390;
+  _DWORD dword394;
+};

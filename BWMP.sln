@@ -1,0 +1,33 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.24720.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BWMP", "BWMP\BWMP.csproj", "{BD903EF7-25D9-464C-9DF8-63F320E8E72E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PeerchatProxy", "PeerchatProxy\PeerchatProxy.csproj", "{9FDF2E73-E94E-4D2F-AFBE-196900A3137D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Mono_2_6_7|Any CPU = Mono_2_6_7|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BD903EF7-25D9-464C-9DF8-63F320E8E72E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BD903EF7-25D9-464C-9DF8-63F320E8E72E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BD903EF7-25D9-464C-9DF8-63F320E8E72E}.Mono_2_6_7|Any CPU.ActiveCfg = Release|Any CPU
+		{BD903EF7-25D9-464C-9DF8-63F320E8E72E}.Mono_2_6_7|Any CPU.Build.0 = Release|Any CPU
+		{BD903EF7-25D9-464C-9DF8-63F320E8E72E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BD903EF7-25D9-464C-9DF8-63F320E8E72E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9FDF2E73-E94E-4D2F-AFBE-196900A3137D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9FDF2E73-E94E-4D2F-AFBE-196900A3137D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9FDF2E73-E94E-4D2F-AFBE-196900A3137D}.Mono_2_6_7|Any CPU.ActiveCfg = Release|Any CPU
+		{9FDF2E73-E94E-4D2F-AFBE-196900A3137D}.Mono_2_6_7|Any CPU.Build.0 = Release|Any CPU
+		{9FDF2E73-E94E-4D2F-AFBE-196900A3137D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9FDF2E73-E94E-4D2F-AFBE-196900A3137D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
