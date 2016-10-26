@@ -35,7 +35,7 @@ namespace PeerchatProxy
                     while (!cancellationToken.IsCancellationRequested)
                     {
                         var tcpClient = await listener.AcceptTcpClientAsync().ContinueWith(t => t.Result, cancellationToken);
-                        clients = clients.Where(task => !task.IsCompleted).ToList();
+                        clients.RemoveAll(task => task.IsCompleted);
                         clients.Add(HandleSingleClient(tcpClient, cancellationToken));
                     }
                 }
