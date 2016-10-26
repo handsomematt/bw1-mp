@@ -9,8 +9,8 @@ to offer the same services provided between 2001-2005 by bwgame.com
 
 ## Writeups
 
-[1. login.bwgame.com](Writeups/1_login_bwgame_com.md)
-[2. Getting Map List](Writeups/2_get_maplist.md)
+* [1. login.bwgame.com](Writeups/1_login_bwgame_com.md)
+* [2. Getting Map List](Writeups/2_get_maplist.md)
 
 ## Questions
 

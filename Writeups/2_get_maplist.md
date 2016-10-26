@@ -97,7 +97,7 @@ Now we loop the data and create our full data string from that.
 
 `\0x21\0x3\0x2Bombardment - 2 players\0x3\0x2mpm_2p_1\0x3\0x22\0x3\0x2?\0x3\0x2?\0x3\0x22\0x3\0x2King of the hill - 3 players\0x3\0x2mpm_3p_1\0x3\0x23\0x3\0x2?\0x3\0x2?\0x3\0x23\0x3\0x2The four corners of Eden - 4 players\0x3\0x2mpm_4p_1\0x3\0x24\0x3\0x2?\0x3\0x2?\0x3[rows]:3[columns]:6[totalcolumns]:18`
 
-Tada - I'm using escaped numerical representations of the ASCII characters SOT and EOT so you can see them. We set that to our response and the downloading map list goes away and we're greeted with another query to our database server and another error.
+Tada - I'm using escaped numerical representations of the ASCII characters SOT and EOT so you can see them. We set that to our response and the downloading map list goes away and we're greeted with another query to our database server and another error. :grin:
 
 ![Image of error](/Writeups/2/gamespy_lost.png)
 

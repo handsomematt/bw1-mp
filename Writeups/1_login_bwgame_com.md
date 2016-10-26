@@ -12,7 +12,7 @@ Entering some basic details and running a network monitor tool before we login, 
 
 > GET /login/?username=matt&userpassword=matt
 
-Just a simple GET request with a plaintext username and password over HTTP - secure. :simple_smile: 
+Just a simple GET request with a plaintext username and password over HTTP - secure. :smile: 
 We can use this easily to create some authentication system - let's work on the response.
 
 ## The Response
@@ -25,7 +25,7 @@ the response data to create a response. Responding any data not in the correct f
 Following some disassembly we find that the response data is parsed like so: `bnwuserid:%d %d %d %s` We can immediately tell the first digit is a unique user id, the rest of the values
 are currently unknown and don't seem to effect anything noticable. We can look into them some other time.
 
-Sending a response of `bnwuserid:1 1 1 hello` will get us past the initial login stage. And get us greeted by our next step:
+Sending a response of `bnwuserid:1 1 1 hello` will get us past the initial login stage. :smile: And get us greeted by our next step:
 
 ![Image of error](/Writeups/1/error_downloading_maplist.png)
 
