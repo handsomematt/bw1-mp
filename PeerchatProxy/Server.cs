@@ -57,19 +57,39 @@ namespace PeerchatProxy
                 Console.WriteLine("New client connected: {0}", remoteEndpoint);
                 tcpClient.NoDelay = true;
 
-                using (var writer = new StreamWriter(tcpClient.GetStream()))
+                using (var clientWriter = new StreamWriter(tcpClient.GetStream()))
                 {
-                    writer.AutoFlush = true;
+                    clientWriter.AutoFlush = true;
 
-                    using (var reader = new StreamReader(tcpClient.GetStream()))
+                    using (var clientReader = new StreamReader(tcpClient.GetStream()))
                     {
-                        var ircCmd = reader.ReadLine();
+                        /* Do handshake */
+                        var ircCmd = clientReader.ReadLine();
                         Console.WriteLine("IRC Cmd: {0}", ircCmd);
+
+
                         // Client: USRIP
                         // Server: ":s 302  :=+@0.0.0.0\r\n"
 
                         // Client: USER 'XflsaqOa9X|165580976 127.0.0.1 peerchat.bwgame.xyz :matt
                         // Client: NICK bblahh
+
+
+                        /* After our handshake is complete proxy them to the IRC server */
+
+                        // make another tcp connection to irc
+                        var ircWriter = new StreamWriter(new MemoryStream()); /* fake */
+                        var ircReader = new StreamReader(new MemoryStream()); /* fake */
+
+                        var tasks = new[]
+                        {
+                            HandleClientToIRCData(clientReader, ircWriter, cts.Token),
+                            HandleIRCToClientData(ircReader, clientWriter, cts.Token)
+                        };
+
+                        await Task.WhenAny(tasks); // if reading or writing to either fails abort
+                        cts.Cancel();
+                        await Task.WhenAll(tasks); // but wait for the other one first
 
                     }
                 }
@@ -81,6 +101,26 @@ namespace PeerchatProxy
             finally
             {
                 tcpClient.Close();
+            }
+        }
+
+        private async Task HandleClientToIRCData(StreamReader clientReader, StreamWriter ircWriter, CancellationToken cancellationToken)
+        {
+            while (!cancellationToken.IsCancellationRequested)
+            {
+                var ircCmd = await clientReader.ReadLineAsync(cancellationToken);
+                Console.WriteLine("Client -> IRC: {0}", ircCmd);
+                await ircWriter.WriteLineAsync(ircCmd, cancellationToken);
+            }
+        }
+
+        private async Task HandleIRCToClientData(StreamReader ircReader, StreamWriter clientWriter, CancellationToken cancellationToken)
+        {
+            while (!cancellationToken.IsCancellationRequested)
+            {
+                var ircCmd = await ircReader.ReadLineAsync(cancellationToken);
+                Console.WriteLine("IRC -> Client: {0}", ircCmd);
+                await clientWriter.WriteLineAsync(ircCmd, cancellationToken);
             }
         }
     }
