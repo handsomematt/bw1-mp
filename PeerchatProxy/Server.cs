@@ -34,7 +34,7 @@ namespace PeerchatProxy
                     /* Accept new clients until this task is cancelled */
                     while (!cancellationToken.IsCancellationRequested)
                     {
-                        var tcpClient = await listener.AcceptTcpClientAsync().ContinueWith(t => t.Result, cancellationToken);
+                        var tcpClient = await listener.AcceptTcpClientAsync().WithCancellation(cancellationToken);
                         clients.RemoveAll(task => task.IsCompleted);
                         clients.Add(HandleSingleClient(tcpClient, cancellationToken));
                     }
@@ -64,14 +64,14 @@ namespace PeerchatProxy
 
                     using (var clientReader = new StreamReader(tcpClient.GetStream()))
                     {
-                        var ircCmd = await clientReader.ReadLineAsync(cts.Token);
+                        var ircCmd = await clientReader.ReadLineAsync();
                         if (ircCmd != "USRIP")
                             return; // TODO: reply/drop nicely
-                        await clientWriter.WriteLineAsync(":s 302  :=+@0.0.0.0", cts.Token);
+                        await clientWriter.WriteLineAsync(":s 302  :=+@0.0.0.0");
 
                         /* Proxy to our IRC server */
                         ircClient = new TcpClient();
-                        await ircClient.ConnectAsync("irc.bwgame.xyz", 6667).WithCancellation(cts.Token);
+                        await ircClient.ConnectAsync("irc.bwgame.xyz", 6667);
 
                         using (var ircWriter = new StreamWriter(ircClient.GetStream()))
                         {
@@ -110,8 +110,8 @@ namespace PeerchatProxy
         {
             while (!cancellationToken.IsCancellationRequested)
             {
-                var ircCmd = await clientReader.ReadLineAsync(cancellationToken);
-                await ircWriter.WriteLineAsync(ircCmd, cancellationToken);
+                var ircCmd = await clientReader.ReadLineAsync();
+                await ircWriter.WriteLineAsync(ircCmd);
                 WriteConsole(ConsoleColor.Green, ircCmd);
             }
         }
@@ -120,8 +120,8 @@ namespace PeerchatProxy
         {
             while (!cancellationToken.IsCancellationRequested)
             {
-                var ircCmd = await ircReader.ReadLineAsync(cancellationToken);
-                await clientWriter.WriteLineAsync(ircCmd, cancellationToken);
+                var ircCmd = await ircReader.ReadLineAsync();
+                await clientWriter.WriteLineAsync(ircCmd);
                 WriteConsole(ConsoleColor.Red, ircCmd);
             }
         }
