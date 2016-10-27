@@ -101,6 +101,6 @@ Tada - I'm using escaped numerical representations of the ASCII characters SOT a
 
 ![Image of error](/Writeups/2/gamespy_lost.png)
 
-# Next
+## Next
 
-Next writeup I will write about the new query and peerchat servers and stuff.
+[3. Peerchat](/Writeups/3_peerchat.md)

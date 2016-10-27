@@ -11,6 +11,7 @@ to offer the same services provided between 2001-2005 by bwgame.com
 
 * [1. login.bwgame.com](Writeups/1_login_bwgame_com.md)
 * [2. Getting Map List](Writeups/2_get_maplist.md)
+* [3. Peerchat](/Writeups/3_peerchat.md)
 
 ## Questions
 
