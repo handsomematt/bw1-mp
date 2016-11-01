@@ -86,16 +86,18 @@ ASCII start of text and ASCII end of text; anything between these is parsed as t
 
 Let's construct our map table:
 
-| ID | Name                                 | File     | Players | ? | ? |
-|:--:| ------------------------------------ | -------- |:-------:|:-:|:-:|
-| 1  | Bombardment - 2 players              | mpm_2p_1 | 2       | ? | ? |
-| 2  | King of the hill - 3 players         | mpm_3p_1 | 3       | ? | ? |
-| 3  | The four corners of Eden - 4 players | mpm_4p_1 | 4       | ? | ? |
+| ID | Name                                 | File     | Players | Hostname              | Download Folder |
+|:--:| ------------------------------------ | -------- |:-------:| --------------------- | --------------- |
+| 1  | Bombardment - 2 players              | mpm_2p_1 | 2       | storage.bwgame.xyz:80 | /bwmaps/        |
+| 2  | King of the hill - 3 players         | mpm_3p_1 | 3       | storage.bwgame.xyz:80 | /bwmaps/        |
+| 3  | The four corners of Eden - 4 players | mpm_4p_1 | 4       | storage.bwgame.xyz:80 | /bwmaps/        |
+
+**The column headers are assumed from later work disassembiling the game, hostname & download folder are used by the client to download maps they do not have.**
 
 First let's make our data descriptions: `[rows]:3[columns]:6[totalcolumns]:18` - we obviously have 3 rows, each with 6 cols, so we have a total of 18 columns.
 Now we loop the data and create our full data string from that.
 
-`\0x21\0x3\0x2Bombardment - 2 players\0x3\0x2mpm_2p_1\0x3\0x22\0x3\0x2?\0x3\0x2?\0x3\0x22\0x3\0x2King of the hill - 3 players\0x3\0x2mpm_3p_1\0x3\0x23\0x3\0x2?\0x3\0x2?\0x3\0x23\0x3\0x2The four corners of Eden - 4 players\0x3\0x2mpm_4p_1\0x3\0x24\0x3\0x2?\0x3\0x2?\0x3[rows]:3[columns]:6[totalcolumns]:18`
+`\0x21\0x3\0x2Bombardment - 2 players\0x3\0x2mpm_2p_1\0x3\0x22\0x3\0x2storage.bwgame.xyz:80\0x3\0x2/bwmaps/\0x3\0x22\0x3\0x2King of the hill - 3 players\0x3\0x2mpm_3p_1\0x3\0x23\0x3\0x2storage.bwgame.xyz:80\0x3\0x2/bwmaps/\0x3\0x23\0x3\0x2The four corners of Eden - 4 players\0x3\0x2mpm_4p_1\0x3\0x24\0x3\0x2storage.bwgame.xyz:80\0x3\0x2/bwmaps/\0x3[rows]:3[columns]:6[totalcolumns]:18`
 
 Tada - I'm using escaped numerical representations of the ASCII characters SOT and EOT so you can see them. We set that to our response and the downloading map list goes away and we're greeted with another query to our database server and another error. :grin:
 

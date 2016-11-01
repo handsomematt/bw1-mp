@@ -159,17 +159,7 @@ namespace BWMP
             using (FileStream fs = File.OpenRead(filePath))
             {
                 response.ContentLength64 = fs.Length;
-                response.SendChunked = false;
-
-                byte[] buffer = new byte[64 * 1024];
-                int read;
-
-                while ((read = fs.Read(buffer, 0, buffer.Length)) > 0)
-                {
-                    response.OutputStream.Write(buffer, 0, read);
-                    response.OutputStream.Flush();
-                }
-
+                fs.CopyTo(response.OutputStream);
             }
         }
 
@@ -182,6 +172,8 @@ namespace BWMP
 
                 string querystring = Encoding.UTF8.GetString(data);
                 NameValueCollection qscoll = HttpUtility.ParseQueryString(querystring);
+
+                Console.WriteLine(querystring);
 
                 // domode, dbflags, bwversion, bwlanguage, uid, uname, upass, query
                 // dbflags = strlen(queryNamePlainText);
@@ -196,13 +188,32 @@ namespace BWMP
                 switch(queryPlain)
                 {
                     case "BWMAPS_GETLIST":
-                        var mapList = new string[4, 6]
+                        var mapList = new string[6, 6]
                             {
+                                /* struct:
+                                    0:  name char[200]
+                                    200: map char[200]
+                                    400: ?1 char[200]
+                                    600: ?2 char[200]
+                                    800: players DWORD
+                                    804: id DWORD
+                                    808: ThumbnailExists
+                                    809: MapFileExists
+                                    810: 1
+
+                                    signed int __thiscall LHFileDownload::DownloadFile(int this, int hostname, int port, int folder, int file, const char *localFileDownload, int a7)
+
+                                */
                                 /* ID, Name,                                    Map         Players    ?       ?   */
-                                { "1", "Bombardment - 2 players",               "mpm_2p_1", "2",    "text", "texty" }, /*  Default - hardcoded ID */
-                                { "2", "King of the hill - 3 players",          "mpm_3p_1", "3",    "text", "texty" }, /*  Default - hardcoded ID */
-                                { "3", "The four corners of Eden - 4 players",  "mpm_4p_1", "4",    "text", "texty" }, /*  Default - hardcoded ID */
-                                { "4", "Shit Map",                              "mpm_shit", "2",    "text", "texty" }
+                                { "1", "Bombardment - 2 players",               "mpm_2p_1", "2", "storage.bwgame.xyz:80", "/bwmaps/" }, /*  Default - hardcoded ID */
+                                { "2", "King of the hill - 3 players",          "mpm_3p_1", "3", "storage.bwgame.xyz:80", "/bwmaps/" }, /*  Default - hardcoded ID */
+                                { "3", "The four corners of Eden - 4 players",  "mpm_4p_1", "4", "storage.bwgame.xyz:80", "/bwmaps/" }, /*  Default - hardcoded ID */
+                                { "4", "Building Blocks - 2 players",           "mpm_2p_2", "2", "storage.bwgame.xyz:80", "/bwmaps/" },
+                                { "5", "Firestorm - 3 players",                 "mpm_3p_2", "3", "storage.bwgame.xyz:80", "/bwmaps/" },
+                                { "6", "Island Wars - 4 players",               "mpm_4p_2", "4", "storage.bwgame.xyz:80", "/bwmaps/" }
+
+                                // Firestorm - 3 players
+                                // Island Wars - 4 players
                             };
 
                         returnString = Lionhead.ConstructDBTableString(mapList);
