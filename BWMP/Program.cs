@@ -158,8 +158,23 @@ namespace BWMP
 
             using (FileStream fs = File.OpenRead(filePath))
             {
+                Console.WriteLine("Opened file {0} with length: {1}", filePath, fs.Length);
+
                 response.ContentLength64 = fs.Length;
-                fs.CopyTo(response.OutputStream);
+
+                byte[] buffer = new byte[512];
+                int read;
+
+                while ((read = fs.Read(buffer, 0, buffer.Length)) > 0)
+                {
+                    response.OutputStream.Write(buffer, 0, read);
+                    response.OutputStream.Flush();
+
+                    Console.WriteLine("sent chunk: {0}", read);
+                    Thread.Sleep(1);
+                }
+
+                Console.WriteLine("done");
             }
         }
 
@@ -211,9 +226,6 @@ namespace BWMP
                                 { "4", "Building Blocks - 2 players",           "mpm_2p_2", "2", "storage.bwgame.xyz:80", "/bwmaps/" },
                                 { "5", "Firestorm - 3 players",                 "mpm_3p_2", "3", "storage.bwgame.xyz:80", "/bwmaps/" },
                                 { "6", "Island Wars - 4 players",               "mpm_4p_2", "4", "storage.bwgame.xyz:80", "/bwmaps/" }
-
-                                // Firestorm - 3 players
-                                // Island Wars - 4 players
                             };
 
                         returnString = Lionhead.ConstructDBTableString(mapList);

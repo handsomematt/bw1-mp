@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BWMP", "BWMP\BWMP.csproj", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PeerchatProxy", "PeerchatProxy\PeerchatProxy.csproj", "{9FDF2E73-E94E-4D2F-AFBE-196900A3137D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GamespyMaster", "GamespyMaster\GamespyMaster.csproj", "{8E7F7B51-4CBC-4FF4-A6E4-4B85A2870BC2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -26,6 +28,12 @@ Global
 		{9FDF2E73-E94E-4D2F-AFBE-196900A3137D}.Mono_2_6_7|Any CPU.Build.0 = Release|Any CPU
 		{9FDF2E73-E94E-4D2F-AFBE-196900A3137D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9FDF2E73-E94E-4D2F-AFBE-196900A3137D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8E7F7B51-4CBC-4FF4-A6E4-4B85A2870BC2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8E7F7B51-4CBC-4FF4-A6E4-4B85A2870BC2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8E7F7B51-4CBC-4FF4-A6E4-4B85A2870BC2}.Mono_2_6_7|Any CPU.ActiveCfg = Release|Any CPU
+		{8E7F7B51-4CBC-4FF4-A6E4-4B85A2870BC2}.Mono_2_6_7|Any CPU.Build.0 = Release|Any CPU
+		{8E7F7B51-4CBC-4FF4-A6E4-4B85A2870BC2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8E7F7B51-4CBC-4FF4-A6E4-4B85A2870BC2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

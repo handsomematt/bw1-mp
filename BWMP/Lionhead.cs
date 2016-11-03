@@ -63,7 +63,7 @@ namespace BWMP
             return builder.ToString();
         }
 
-        public static byte[] LHWebDecode(string inStr) /* this function works, it's the other obsufication shit) */
+        public static byte[] LHWebDecode(string inStr)
         {
             int outLength = inStr.Length / 2;
             byte[] outBuffer = new byte[inStr.Length / 2];

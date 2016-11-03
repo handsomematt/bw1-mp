@@ -45,3 +45,40 @@ struct __declspec(align(4)) ircStruct
   _DWORD dword390;
   _DWORD dword394;
 };
+
+struct __declspec(align(4)) irc2Struct
+{
+  ircStruct *pircstruct0;
+  char ircNick[128];
+  _DWORD someShit84;
+  _DWORD someShit88;
+  _DWORD someShit8C;
+  _DWORD someShit90;
+  _DWORD someShit94;
+  _DWORD someShit98;
+  char gameName9C[128];
+  char gap11C[756];
+  char gap410[56];
+  char peerchatKey448[184];
+  char updateChannelName[128];
+  char gap580[360];
+  char hostName6E8[256];
+  char gap7E8[64];
+  char ircNick828[128];
+  char lhUserName8A8[128];
+  char encodedIP928[128];
+  _DWORD someShit9A8;
+  char hostName9AC[128];
+  char gapA2C[84];
+};
+
+(a1 + 1280) UpdateChannel
+
+JoinIRCChannel(*(ircStruct **)a1, (char *)(a1 + 1280), (int)&ircChanPass, (int)&a4, (int)sub_88A610, v4, 0);
+
+ircCmd {
+  8: NICK
+  20: MSGTYPE
+  28: MSGPARAMS
+  32: ANOTHERMSGPARAM
+}
